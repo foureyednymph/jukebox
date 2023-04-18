@@ -80,7 +80,7 @@ def audio_postprocess(x, hps):
     return x
 
 def stft(sig, hps):
-    return torch.view_as_real(t.stft(sig, hps.n_fft, hps.hop_length, win_length=hps.window_size, window=t.hann_window(hps.window_size, device=sig.device), return_complex=True))
+    return t.view_as_real(t.stft(sig, hps.n_fft, hps.hop_length, win_length=hps.window_size, window=t.hann_window(hps.window_size, device=sig.device), return_complex=True))
 
 def spec(x, hps):
     return t.norm(stft(x, hps), p=2, dim=-1)
