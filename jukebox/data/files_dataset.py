@@ -37,7 +37,7 @@ class FilesAudioDataset(Dataset):
 
     def init_dataset(self, hps):
         # Load list of files and starts/durations
-        files = librosa.util.find_files(f'{hps.audio_files_dir}', ['mp3', 'opus', 'm4a', 'aac', 'wav'])
+        files = librosa.util.find_files(f'{hps.audio_files_dir}', ext=['mp3', 'opus', 'm4a', 'aac', 'wav'])
         print_all(f"Found {len(files)} files. Getting durations")
         cache = dist.get_rank() % 8 == 0 if dist.is_available() else True
         durations = np.array([get_duration_sec(file, cache=cache) * self.sr for file in files])  # Could be approximate
