@@ -3,5 +3,5 @@ tqdm
 soundfile
 unidecode
 numba
-librosa>=0.8.1
+librosa
 mpi4py
